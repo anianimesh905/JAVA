@@ -1,0 +1,14 @@
+# IDE folders and files
+.idea/
+.vscode/
+*.iml
+
+# Build/Output folders
+out/
+
+# Compiled Java files
+*.class
+
+# Temporary files
+*.tmp
+*.temp
