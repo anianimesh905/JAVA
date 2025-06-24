@@ -11,7 +11,7 @@ public class BST {
         }
     }
 
-    public static Node insert(Node root, int val){
+    public static Node insert(Node root, int val){      //inserting key
         if(root == null)
             return new Node(val);
 
@@ -24,7 +24,7 @@ public class BST {
         return root;
     }
 
-    public static void inorder(Node root){
+    public static void inorder(Node root){      //inorder traversal
         if(root == null)
             return;
 
@@ -32,6 +32,22 @@ public class BST {
         System.out.print(root.data+" ");
         inorder(root.right);
     }
+
+    public static boolean search(Node root, int val){
+        if (root == null)
+            return false;
+
+        if (root.data == val)
+            return true;
+
+        if (val < root.data)
+            return search(root.left, val);
+
+        else
+            return search(root.right, val);
+    }
+
+
     public static void main(String[] args) {
         int values[] = {5,1,2,4,3,7,6,9,8};
         Node root = null;
@@ -46,5 +62,7 @@ public class BST {
 
         inorder(root);
         System.out.println();
+
+        System.out.println(search(root,7));
     }
 }
