@@ -1,4 +1,4 @@
-package src.lvl1_fundamental;
+package src.Fundamental;
 public class typeConversion {
     public static void main(String[] args) {
         System.out.println("=== Type Conversion in Java ===");

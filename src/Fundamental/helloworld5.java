@@ -1,4 +1,4 @@
-package src.lvl1_fundamental;
+package src.Fundamental;
 
 public class helloworld5 
 {

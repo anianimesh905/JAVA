@@ -1,6 +1,6 @@
 // We will declare various variables and print there range and sizes.
 
-package src.lvl1_fundamental;
+package src.Fundamental;
 
 public class varDecl 
 {
