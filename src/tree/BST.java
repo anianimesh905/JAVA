@@ -1,5 +1,7 @@
 package src.tree;
 
+import java.sql.SQLOutput;
+
 public class BST {
     static class Node {
         int data;
@@ -48,40 +50,58 @@ public class BST {
     }
 
     // Delete a node with value x from BST
-    public static Node delNode(Node root, int x) {
-        if (root == null) return root;
+    public static Node delete(Node root, int val) {
 
-        if (x < root.data) {
-            root.left = delNode(root.left, x);
-        } else if (x > root.data) {
-            root.right = delNode(root.right, x);
-        } else {
-            // Node to delete found
+        if(root.data > val)
+            root.left = delete(root.left, val);
 
-            // Case 1: No left child
-            if (root.left == null)
+        else if(root.data < val)
+            root.right = delete(root.right, val);
+
+        else{
+            // Case 1: No child
+            if (root.left == null && root.right == null) {
+                root = null;
+                return root;
+            }
+
+            // Case 2: 1 child
+            if(root.left == null)
                 return root.right;
-
-            // Case 2: No right child
-            if (root.right == null)
+            else if(root.right == null)
                 return root.left;
 
-            // Case 3: Two children
-            Node succ = getSuccessor(root);
-            root.data = succ.data;
-            root.right = delNode(root.right, succ.data);
+            // Case 3: 2 child
+            Node is = getSuccessor(root.right);
+            root.data = is.data;
+            root.right = delete(root.right, is.data); // Deleting the duplicate and update using root.right =
         }
+
         return root;
     }
 
     // Get inorder successor (smallest value in right subtree)
-    public static Node getSuccessor(Node curr) {
-        curr = curr.right;
-        while (curr != null && curr.left != null)
-            curr = curr.left;
-        return curr;
+    public static Node getSuccessor(Node root) {
+        while(root.left != null)
+            root = root.left;
+        return root;
     }
 
+    public static void printInRange(Node root, int X, int Y){
+        if (root == null)
+            return;
+
+        if (root.data >= X && root.data <= Y)
+        {
+            printInRange(root.left, X, Y);
+            System.out.print(root.data+" ");
+            printInRange(root.right, X, Y);
+        }
+        else if(root.data >= Y)
+            printInRange(root.left, X, Y);
+        else
+            printInRange(root.right, X, Y);
+    }
 
     public static void main(String[] args) {
         int values[] = {5,1,2,4,3,7,6,9,8};
@@ -99,7 +119,13 @@ public class BST {
         System.out.println();
 
         System.out.println(search(root,7));
-        delNode(root, 5);
+        delete(root, 5);
         inorder(root);
+
+        int X = 3;
+        int Y = 8;
+        System.out.println();
+        System.out.println("In range of "+X+" and "+Y+" ");
+        printInRange(root, X, Y);
     }
 }
