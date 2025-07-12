@@ -1,6 +1,6 @@
 package src.Array;
 
-public class BubbleSort {
+public class Sort_BubbleSort {
     public static void bubbleSort(int[] arr) {
         int n = arr.length;
         boolean swapped;

@@ -1,6 +1,6 @@
 package src.Array;
 
-public class SelectionSort {
+public class Sort_SelectionSort {
     public static void selectionSort(int[] arr) {
         int n = arr.length;
 
