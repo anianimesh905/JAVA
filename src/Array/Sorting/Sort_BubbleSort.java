@@ -1,4 +1,4 @@
-package src.Array;
+package src.Array.Sorting;
 
 public class Sort_BubbleSort {
     public static void bubbleSort(int[] arr) {

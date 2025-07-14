@@ -10,7 +10,7 @@
 - Repeat this for all elements in the array.
 */
 
-package src.Array;
+package src.Array.Sorting;
 
 public class Sort_InsertionSort {
     public static void insertionSort(int[] arr) {
