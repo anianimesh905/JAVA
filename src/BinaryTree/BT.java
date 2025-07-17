@@ -22,20 +22,6 @@ package src.BinaryTree;
 import java.util.ArrayList;
 import java.util.List;
 
-// Node class represents each node of the binary tree
-class Node {
-    int data;
-    Node left;
-    Node right;
-
-    // Constructor to create a new node with given key
-    public Node(int key){
-        data = key;
-        left = null;
-        right = null;
-    }
-}
-
 public class BT {
 
     // 🔸 Preorder Traversal (Root ➝ Left ➝ Right)
