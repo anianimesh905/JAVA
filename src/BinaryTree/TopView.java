@@ -65,10 +65,14 @@ public class TopView {
         // Create the binary tree
         /*
                     1
-                  /   \
-                 2     3
-                / \     \
-               4   5     8
+                  /
+                 2
+                / \
+               4   5
+                    \
+                     8
+                      \
+                       9
         */
 
         Node root = new Node(1);
