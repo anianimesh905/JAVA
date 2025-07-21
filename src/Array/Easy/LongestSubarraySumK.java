@@ -83,6 +83,8 @@ public class LongestSubarraySumK {
     public static void main(String[] args) {
         int[] array = {1, 2, 3, 1, 1, 1, 1}; // input array
         long k = 3; // target sum
+        int[] array2 = {-1, 1, 1}; // input array
+        long k2 = 1; // target sum
 
         // 💥 Approach 1: Brute Force
         int longestLength1 = getLongestSubarray(array, k);
@@ -91,5 +93,10 @@ public class LongestSubarraySumK {
         // ⚡ Approach 2: Sliding Window
         int longestLength2 = getLongestSubarraySlidingWindow(array, k);
         System.out.println("Approach 2 - Length of the longest subarray with sum " + k + ": " + longestLength2);
+
+        int longestLength3 = getLongestSubarraySlidingWindow(array2, k2);
+        System.out.println("Approach... - Length of the longest subarray with sum " + k2 + ": " + longestLength3);
+
+
     }
 }
