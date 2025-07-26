@@ -1,4 +1,4 @@
-package src.LeetCode.easy;
+package src.LeetCode.STRING;
 
 public class LC_125_ValidPalindrome {
 

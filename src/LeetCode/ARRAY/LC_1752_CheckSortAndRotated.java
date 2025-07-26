@@ -1,4 +1,4 @@
-// 🧠 LeetCode 1752: Check if Array Is Sorted and Rotated
+package src.LeetCode.ARRAY;// 🧠 LeetCode 1752: Check if Array Is Sorted and Rotated
 
 /*
 👉 QUESTION:
