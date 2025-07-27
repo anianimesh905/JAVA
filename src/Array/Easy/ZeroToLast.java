@@ -31,7 +31,7 @@ public class ZeroToLast {
 
     public static void main(String[] args) {
         // Test array with multiple 0s and non-zero values
-        int[] arr = {1,0,2,0,3,0,4, 0, 0, 0, 4, 5, 4,3,2,1,4,5,6,7};
+        int[] arr = {0,1,0,3,12};
         zero(arr);                     // Call the zero function to move zeros to the end
     }
 }
