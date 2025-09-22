@@ -1,70 +1,115 @@
 package src.Array.Easy;
 
-/*
-    ✅ Question:
-    Given an integer array, find the contiguous subarray (containing at least one number)
-    which has the largest sum and return its sum and the subarray itself.
+import java.util.*;
 
-    🔍 Example:
-    Input:  [-2,1,-3,4,-1,2,1,-5,4]
-    Output: 6
-    Subarray: [4, -1, 2, 1]
-
-    ✅ Concept:
-    This is a classic problem solved using Kadane's Algorithm. It runs in O(n) time and
-    keeps track of the maximum subarray sum found so far while iterating through the array.
-*/
+/**
+ * LeetCode 53. Maximum Subarray
+ *
+ * Problem Statement:
+ * Given an integer array nums, find the contiguous subarray (containing at least one number)
+ * which has the largest sum and return its sum.
+ *
+ * Example 1:
+ * Input:  nums = [-2,1,-3,4,-1,2,1,-5,4]
+ * Output: 6
+ * Explanation: [4, -1, 2, 1] has the largest sum = 6
+ *
+ * Example 2:
+ * Input:  nums = [1]
+ * Output: 1
+ *
+ * Example 3:
+ * Input:  nums = [5,4,-1,7,8]
+ * Output: 23
+ *
+ * Goal:
+ * Find the maximum subarray sum using Kadane's Algorithm.
+ *
+ * Approach (Kadane's Algorithm):
+ * ---------------------------------------------------------------
+ * 1. Iterate through the array while keeping two variables:
+ *    - currSum: maximum subarray sum ending at current index
+ *    - maxSum: maximum subarray sum found so far
+ *
+ * 2. At each step:
+ *    - Either start a new subarray from current element
+ *    - Or extend the previous subarray
+ *
+ * 3. Also track the start and end indices to retrieve the subarray itself.
+ */
 
 public class KadaneAlgorithm {
 
-    // Method to find and print the maximum subarray and its sum using Kadane's Algorithm
-    static void findMaxSubarray(int[] arr) {
-        int n = arr.length;
+    // ✅ Method 1: Return both maximum sum and subarray
+    public void findMaxSubarray(int[] nums) {
+        int n = nums.length;
 
-        // Initialize maxSum and currSum with the first element
-        int maxSum = arr[0];  // Stores the maximum sum found so far
-        int currSum = arr[0]; // Stores the current running sum of subarray
+        int currSum = nums[0];
+        int maxSum = nums[0];
 
-        // Variables to track subarray indices
-        int start = 0, end = 0;       // Final start and end of max sum subarray
-        int tempStart = 0;           // Temp start index for current subarray
+        int start = 0, end = 0;     // final indices of max subarray
+        int tempStart = 0;          // temp start for current subarray
 
-        // Traverse the array from the second element
         for (int i = 1; i < n; i++) {
 
-            // Decide whether to start a new subarray or continue with the existing
-            if (currSum + arr[i] < arr[i]) {
-                currSum = arr[i];        // Start new subarray
-                tempStart = i;           // Reset temp start index
+            if (currSum + nums[i] < nums[i]) {
+                currSum = nums[i];
+                tempStart = i;      // start new subarray
             } else {
-                currSum += arr[i];       // Continue the subarray
+                currSum += nums[i]; // continue subarray
             }
 
-            // Update maxSum and final subarray indices if needed
             if (currSum > maxSum) {
-                maxSum = currSum;        // New maximum found
-                start = tempStart;       // Update start of subarray
-                end = i;                 // Update end of subarray
+                maxSum = currSum;
+                start = tempStart;
+                end = i;
             }
         }
 
-        // Output result
         System.out.println("Maximum Subarray Sum = " + maxSum);
-        printSubarray(arr, start, end); // Print the subarray itself
+        printSubarray(nums, start, end);
     }
 
-    // Method to print subarray between given start and end indices
-    static void printSubarray(int[] arr, int start, int end) {
+    // ✅ Method 2: Simpler Kadane's version — only returns the max sum
+    public int maxSubarraySum(int[] nums) {
+        int currSum = nums[0];
+        int maxSum = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            currSum = Math.max(nums[i], currSum + nums[i]);
+            maxSum = Math.max(maxSum, currSum);
+        }
+        return maxSum;
+    }
+
+    // Helper: Print subarray from start to end index
+    private void printSubarray(int[] nums, int start, int end) {
         System.out.print("Subarray: [");
         for (int i = start; i <= end; i++) {
-            System.out.print(arr[i]);           // Print element
-            if (i < end) System.out.print(", "); // Add comma if not last element
+            System.out.print(nums[i]);
+            if (i < end) System.out.print(", ");
         }
         System.out.println("]");
     }
 
+    // Test the implementation
     public static void main(String[] args) {
-        int[] arr = {-2, 1, -3, 4, -1, 2, 1, -5, 4}; // Test input array
-        findMaxSubarray(arr); // Call the method to find max subarray
+        KadaneAlgorithm obj = new KadaneAlgorithm();
+
+        int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
+
+        // Method 1: Print both sum and subarray
+        obj.findMaxSubarray(nums);
+
+        // Method 2: Only print max sum
+        System.out.println("Maximum Subarray Sum (simple) = " + obj.maxSubarraySum(nums));
     }
 }
+
+/**
+ * Time Complexity:
+ * - O(n): Traverse the array once.
+ *
+ * Space Complexity:
+ * - O(1): Constant extra space.
+ */
